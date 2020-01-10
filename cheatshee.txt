@@ -74,3 +74,45 @@ web3.personal.unlockAccount(0x6b1a354276ef2a7d9dd7f5291a912732f291f057, null)
 --allow-insecure-unlock
 
 personal.unlockAccount(web3.eth.accounts[0],null) --allow-insecure-unlock
+
+******************************************************************************
+git init
+//inicia o program dentro do folder que vc tiver no terminal
+
+git commit -m "ttdm first commit" .
+ // manda pra la onde o folder foi aberto meu...
+
+ git remote add origin https://github.com/Laddergrowth/ttdmToken.git
+ // o nome quase jah dizzzz nehhh
+
+ git push -u origin master
+ // vai pedir username and pass
+
+
+  If your editor or some other system is running git fetch in the background for you a way to mitigate this is to simply set up another remote:
+
+               git remote add origin-push $(git config remote.origin.url)
+               git fetch origin-push
+
+           Now when the background process runs git fetch origin the references on origin-push won’t be updated, and thus commands like:
+
+               git push --force-with-lease origin-push
+
+           Will fail unless you manually run git fetch origin-push. This method is of course entirely defeated by something that runs git fetch --all, in that
+           case you’d need to either disable it or do something more tedious like:
+
+               git fetch              # update 'master' from remote
+               git tag base master    # mark our base point
+               git rebase -i master   # rewrite some commits
+               git push --force-with-lease=master:base master:master
+
+           I.e. create a base tag for versions of the upstream code that you’ve seen and are willing to overwrite, then rewrite history, and finally force push
+           changes to master if the remote version is still at base, regardless of what your local remotes/origin/master has been updated to in the background.
+
+after many attemps here is one last solution that did work
+
+git push --force https://github.com/Laddergrowth/ttdmToken.git
+
+
+*******************************************************************************************
+
