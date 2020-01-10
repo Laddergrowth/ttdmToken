@@ -1,0 +1,76 @@
+for >
+truffle console
+
+TtdmTokenSale.deployed().then(function(i){tokenSale=i;})
+
+TtdmToken.deployed().then(function(i){ token=i; })
+
+tokensAvailable = 75000
+
+admin = web3.eth.accounts[0]
+
+
+starting get in test mode
+
+geth --rinkeby --rpc --rpcapi="personal,eth,network,web3,net" --ipcpath"~/Library/Ethereum/geth.ipc"
+
+(#nao tinha funcionado porque em linux eh configuracao different seque abaixo
+ versao pra differente platforms >>> https://ethereum.stackexchange.com/questions/1492/when-is-the-geth-ipc-file-produced
+)
+
+
+macOS
+
+~/Library/Ethereum/
+
+Linux
+
+~/.ethereum/
+
+Windows
+
+~/AppData/Roaming/Ethereum
+*********************************************************************************************************
+geth --rinkeby --rpc --rpcapi="personal,eth,network,web3,net" --ipcpath "~/.ethereum/geth.ipc"
+
+******************************************************************************
+ mano lembra de COLOCAR SUDO e E CHEKAR ESPACOS TBM!!!
+*************************************************************************************************
+
+geth attach (*run this in other windows mat require root)
+
+inside geth console
+
+>eth.syncing
+
+
+
+
+make new account @ https://youtu.be/XdKv5uwEk5A?t=24885
+***************************************************
+create account with rinkeby
+
+geth --rinkeby account new
+
+rinkeby account
+Public address of the key:   0x6B1A354276ef2a7D9dd7F5291A912732f291F057
+********************************************
+
+>>>Public address of the key:   0x9EF95064a12f944E884C92edF90B23E9741e1A57
+
+(****** make sure to be in side the geth attach first)
+
+>eth.accounts
+ show balance of accounts
+>eth.getBalance(eth.accounts[0])
+
+### unlockin account for a certain period of time
+personal.unlockAccount(eth.accounts[0], null, 1200)
+
+personal.unlockAccount(eth.accounts[0], null, 3300)
+
+web3.personal.unlockAccount(0x6b1a354276ef2a7d9dd7f5291a912732f291f057, null)
+
+--allow-insecure-unlock
+
+personal.unlockAccount(web3.eth.accounts[0],null) --allow-insecure-unlock
